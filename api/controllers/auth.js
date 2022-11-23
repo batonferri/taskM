@@ -87,6 +87,7 @@ export const login = (req, res) => {
 
     res
       .cookie("access_token", token, {
+        expires: new Date(Date.now() + 3 * 86400000),
         httpOnly: true,
       })
       .status(200)

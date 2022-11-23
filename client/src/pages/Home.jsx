@@ -4,13 +4,15 @@ import TableBody from "../components/TableBody";
 import TableHead from "../components/TableHead";
 import { useQuery } from "../hooks/useFetch";
 import { tableColumns } from "../util/tableColumns";
+import Error from "../components/Error";
 const Home = () => {
   const { data: tasks, loading, error } = useQuery("/tasks");
 
   if (loading) return <p>loading...</p>;
-  if (error) return <p>{JSON.stringify(error)}</p>;
+  if (error) {
+    return <Error error={error} />;
+  }
 
-  console.log(tasks);
   return (
     <MDBTable align="middle">
       <TableHead tableColumns={tableColumns} />

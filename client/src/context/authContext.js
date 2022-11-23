@@ -9,7 +9,6 @@ export const AuthContextProvider = ({ children }) => {
   const [me, setMe] = useState(
     decodeToken(localStorage.getItem("user")) || null
   );
-
   const login = async (inputs) => {
     const res = await axios.post("/auth/login", inputs);
     setMe(decodeToken(res.data));
@@ -27,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [me]);
 
   return (
-    <AuthContext.Provider value={{ me, login, logout }}>
+    <AuthContext.Provider value={{ me, login, logout, setMe }}>
       {children}
     </AuthContext.Provider>
   );
