@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { MDBContainer, MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { useUser } from "../hooks/useUser";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -9,7 +9,7 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState(null);
-  const { login } = useContext(AuthContext);
+  const { login } = useUser();
   const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));

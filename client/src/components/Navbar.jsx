@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   MDBNavbar,
   MDBContainer,
@@ -11,12 +11,12 @@ import {
   MDBCollapse,
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { useUser } from "../hooks/useUser";
 
 const Navbar = () => {
   const [showNavColor, setShowNavColor] = useState(false);
   const navigate = useNavigate();
-  const { me, logout } = useContext(AuthContext);
+  const { me, logout } = useUser();
 
   const handleLogout = () => {
     logout();

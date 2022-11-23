@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { useUser } from "../hooks/useUser";
 
 const RedirectLayout = () => {
   const navigate = useNavigate();
-  const { me } = useContext(AuthContext);
+  const { me } = useUser();
   const pathName = location.pathname;
   useEffect(() => {
     if (!!me && (pathName === "/register" || pathName === "/login"))

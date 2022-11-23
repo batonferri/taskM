@@ -1,9 +1,8 @@
 import React from "react";
-import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { useUser } from "../hooks/useUser";
 
 const Error = ({ error }) => {
-  const { setMe } = useContext(AuthContext);
+  const { setMe } = useUser();
 
   if (error?.response.data === "Not authenticated!") {
     setMe(null);
