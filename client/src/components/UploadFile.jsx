@@ -6,6 +6,7 @@ import { upload } from "../helper/uploadFile";
 
 const UploadFile = () => {
   const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -21,13 +22,34 @@ const UploadFile = () => {
     }
   };
 
+  const loadSelectedImage = (e) => {
+    const reader = new FileReader();
+    setFile(e.target.files[0]);
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
+  };
+
   return (
     <>
+      {selectedFile && (
+        <div className="w-25">
+          <img
+            src={selectedFile}
+            alt="Selected photo"
+            style={{ width: "250px", height: "250px", objectFit: "cover" }}
+          />
+        </div>
+      )}
       <div className="d-flex">
         <div className="w-25">
           <MDBFile
             label="Update Your Profile Pic"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={loadSelectedImage}
           />
         </div>
         <div className="d-flex align-items-end mx-2">
