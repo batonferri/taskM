@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import RedirectLayout from "./components/RedirectLayout";
 import AddTask from "./pages/AddTask";
+import Profile from "./pages/Profile";
 
 const MainLayout = () => {
   return (
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <Home />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
           },
           {
             path: "/addtask",

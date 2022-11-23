@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <MDBNavbar expand="lg" dark bgColor="primary">
+    <MDBNavbar expand="lg" dark bgColor="primary" className="mb-5">
       <MDBContainer fluid>
         <Link to="/">
           <MDBNavbarBrand>{me?.companyName}</MDBNavbarBrand>
@@ -41,9 +41,11 @@ const Navbar = () => {
         </MDBNavbarToggler>
         <MDBCollapse show={showNavColor} navbar>
           <MDBNavbarNav className="me-auto mb-2 mb-lg-0">
-            <MDBNavbarItem>
-              <MDBNavbarLink>{me?.full_name.toUpperCase()}</MDBNavbarLink>
-            </MDBNavbarItem>
+            <Link to="/profile">
+              <MDBNavbarItem>
+                <MDBNavbarLink>{me?.full_name.toUpperCase()}</MDBNavbarLink>
+              </MDBNavbarItem>
+            </Link>
             <Link to="/addtask">
               <MDBNavbarItem>
                 <MDBNavbarLink>Add Task</MDBNavbarLink>
