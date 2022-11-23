@@ -1,10 +1,11 @@
 import React from "react";
 import { MDBTable } from "mdb-react-ui-kit";
-import TableBody from "../components/TableBody";
+import TableRow from "../components/TableRow";
 import TableHead from "../components/TableHead";
 import { useQuery } from "../hooks/useFetch";
 import { tableColumns } from "../util/tableColumns";
 import Error from "../components/Error";
+import { Link } from "react-router-dom";
 const Home = () => {
   const { data: tasks, loading, error } = useQuery("/tasks");
 
@@ -17,7 +18,7 @@ const Home = () => {
     <MDBTable align="middle">
       <TableHead tableColumns={tableColumns} />
       {tasks?.map((task) => (
-        <TableBody
+        <TableRow
           id={task.id}
           assignTo={{
             name: task.assignTo,

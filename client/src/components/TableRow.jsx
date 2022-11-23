@@ -4,8 +4,9 @@ import dayjs from "dayjs";
 import Avatar from "./Avatar";
 import { getStatusColor } from "../helper/getStatusColor";
 import { truncateString } from "../helper/truncateString";
+import { Link, useNavigate } from "react-router-dom";
 
-const TableBody = ({
+const TableRow = ({
   createdBy,
   status,
   assignTo,
@@ -15,8 +16,12 @@ const TableBody = ({
   date,
   id,
 }) => {
+  const navigate = useNavigate();
   return (
-    <MDBTableBody key={id}>
+    <MDBTableBody
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate(`/task/${id}`)}
+    >
       <tr>
         <td>
           <div className="d-flex align-items-center">
@@ -52,4 +57,4 @@ const TableBody = ({
   );
 };
 
-export default TableBody;
+export default TableRow;
