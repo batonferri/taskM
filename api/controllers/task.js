@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import { db } from "../db.js";
-import dayjs from "dayjs";
 
 export const getTasks = (req, res) => {
   const token = req.cookies.access_token;
@@ -62,7 +61,7 @@ export const addTask = (req, res) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const query =
-      "INSERT INTO tasks(`title`, `description`, `status`, `created_by`, `assign_to`,`created_at`, `category_id`, `company_id`) VALUES (?)";
+      "INSERT INTO tasks(`title`, `description`, `status`, `created_by`, `assign_to`, `category_id`, `company_id`) VALUES (?)";
 
     const values = [
       req.body.title,
@@ -70,7 +69,6 @@ export const addTask = (req, res) => {
       "To Do",
       userInfo.id,
       Number(req.body.assign_to),
-      dayjs(Date.now()).format("YYYY-MM-DD hh:mm:ss"),
       Number(req.body.category_id),
       userInfo.companyId,
     ];
