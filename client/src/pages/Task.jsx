@@ -1,17 +1,16 @@
 import axios from "axios";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardText,
-  MDBCardTitle,
-} from "mdb-react-ui-kit";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import TaskBody from "../components/TaskBody";
+import TaskSidebar from "../components/TaskSidebar";
+import { useQuery } from "../hooks/useFetch";
+import { useUser } from "../hooks/useUser";
 
 const Task = () => {
   const { id } = useParams();
   const [message, setMessage] = useState(null);
+
+  const { me } = useUser();
 
   const handleStart = async (e) => {
     e.preventDefault();
@@ -23,20 +22,24 @@ const Task = () => {
     }
   };
 
-  console.log(message);
+  const { data: task, loading, error } = useQuery(`/tasks/${id}`);
+
+  if (loading) return <p>loading...</p>;
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
-    <MDBCard className="w-25">
-      <MDBCardBody>
-        <MDBCardTitle>Start this task</MDBCardTitle>
-        <MDBCardText>
-          By clicking start task status will change from "To Do" to "In
-          Progress"
-        </MDBCardText>
-        <MDBBtn onClick={handleStart}>Start</MDBBtn>
-      </MDBCardBody>
-      <div className="mx-3">{message && <p>{message.data}</p>}</div>
-    </MDBCard>
+    <div className="container">
+      <div className="row">
+        <TaskBody title={task.title} description={task.description} />
+        <div className="col-md-3">
+          {task.assignTo_id === me.id && (
+            <TaskSidebar handleStart={handleStart} message={message} />
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
