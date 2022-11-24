@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useQuery = (url) => {
+export const useQuery = (url, refetch = false) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,7 +30,7 @@ export const useQuery = (url) => {
       isMounted = false;
       source.cancel();
     };
-  }, [url]);
+  }, [url, refetch]);
 
   return { data, loading, error };
 };
