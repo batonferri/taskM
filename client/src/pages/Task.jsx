@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import CommentSection from "../components/CommentSection";
 import TaskBody from "../components/TaskBody";
 import TaskSidebar from "../components/TaskSidebar";
 import { useQuery } from "../hooks/useFetch";
@@ -32,7 +33,10 @@ const Task = () => {
   return (
     <div className="container">
       <div className="row">
-        <TaskBody title={task.title} description={task.description} />
+        <div className="col-md-9">
+          <TaskBody title={task.title} description={task.description} />
+          <CommentSection taskId={id} />
+        </div>
         <div className="col-md-3">
           {task.assignTo_id === me.id && (
             <TaskSidebar handleStart={handleStart} message={message} />

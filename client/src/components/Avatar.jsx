@@ -5,7 +5,7 @@ const Avatar = ({ src, name }) => {
     <>
       {src ? (
         <img
-          src={`../upload/${src}`}
+          src={src}
           alt={name}
           style={{ width: "45px", height: "45px", objectFit: "cover" }}
           className="rounded-circle"

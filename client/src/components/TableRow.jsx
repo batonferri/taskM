@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import Avatar from "./Avatar";
 import { getStatusColor } from "../helper/getStatusColor";
 import { truncateString } from "../helper/truncateString";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TableRow = ({
   createdBy,

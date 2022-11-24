@@ -5,7 +5,6 @@ import TableHead from "../components/TableHead";
 import { useQuery } from "../hooks/useFetch";
 import { tableColumns } from "../util/tableColumns";
 import Error from "../components/Error";
-import { Link } from "react-router-dom";
 const Home = () => {
   const { data: tasks, loading, error } = useQuery("/tasks");
 

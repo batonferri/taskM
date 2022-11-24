@@ -2,6 +2,7 @@ import express from "express";
 import taskRoutes from "./routes/task.js";
 import userRoutes from "./routes/user.js";
 import categoryRoutes from "./routes/category.js";
+import commentsRoutes from "./routes/comment.js";
 import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
     cb(null, "../client/public/upload");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
+    cb(null, `../upload/` + Date.now() + file.originalname);
   },
 });
 
@@ -29,6 +30,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/comments", commentsRoutes);
 app.use("/api/auth", authRoutes);
 
 app.listen(5000, () => {
