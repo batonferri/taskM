@@ -8,7 +8,7 @@ const Comments = ({ comments }) => {
   return (
     <div className="comments">
       <h5 className="comment-title py-4">
-        {comments.length} {comments.length > 1 ? "Comments" : "Comment"}
+        {comments.length} {comments.length !== 1 ? "Comments" : "Comment"}
       </h5>
 
       {comments.map((comment) => (

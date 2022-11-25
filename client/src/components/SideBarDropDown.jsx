@@ -1,4 +1,11 @@
+import {
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+} from "mdb-react-ui-kit";
 import React from "react";
+import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 
 const SideBarDropDown = ({
@@ -9,13 +16,11 @@ const SideBarDropDown = ({
   onClick,
 }) => {
   return (
-    <div className="dropdown">
-      <a
-        style={{ cursor: "pointer" }}
-        className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-        onClick={() => {
-          setShowDropDown((prev) => !prev);
-        }}
+    <MDBDropdown group className="shadow-0">
+      <MDBDropdownToggle
+        color="#332d2d"
+        role="button"
+        className="d-flex align-items-center text-white"
       >
         <Avatar
           name={name}
@@ -25,21 +30,20 @@ const SideBarDropDown = ({
           className="rounded-circle me-2"
         />
         <strong>{name?.toUpperCase()}</strong>
-      </a>
-      {showDropDown && (
-        <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li>
-            <a className="dropdown-item">Profile</a>
-          </li>
-          <hr className="dropdown-divider" />
-          <li>
-            <a className="dropdown-item" onClick={onClick}>
-              Sign out
-            </a>
-          </li>
-        </ul>
-      )}
-    </div>
+      </MDBDropdownToggle>
+      <MDBDropdownMenu className="dropdown-menu-dark w-100">
+        <MDBDropdownItem>
+          <Link to={"/profile"} className="dropdown-item">
+            Profile
+          </Link>
+        </MDBDropdownItem>
+        <MDBDropdownItem>
+          <a className="dropdown-item" onClick={onClick}>
+            Sign out
+          </a>
+        </MDBDropdownItem>
+      </MDBDropdownMenu>
+    </MDBDropdown>
   );
 };
 

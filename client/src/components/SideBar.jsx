@@ -27,7 +27,7 @@ const SideBar = () => {
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         {sideBarItems.map((item) => (
-          <SideBarItem name={item.name} path={item.path} />
+          <SideBarItem name={item.name} path={item.path} icon={item.icon} />
         ))}
       </ul>
       <hr />

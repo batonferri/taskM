@@ -37,11 +37,7 @@ const CommentSection = ({ taskId }) => {
 
   return (
     <div className="pb-5">
-      {comments.length ? (
-        <Comments comments={comments} />
-      ) : (
-        <h5 className="mt-5">There is no comments on this task</h5>
-      )}
+      <Comments comments={comments} />
       <CommentForm
         handleSubmit={handleSubmit}
         handleChange={handleChange}

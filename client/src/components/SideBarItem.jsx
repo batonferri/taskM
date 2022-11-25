@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MDBIcon } from "mdb-react-ui-kit";
 
-const SideBarItem = ({ name, path }) => {
+const SideBarItem = ({ name, path, icon }) => {
   return (
     <li className="nav-item" key={name + path}>
       <Link
@@ -12,9 +13,9 @@ const SideBarItem = ({ name, path }) => {
           backgroundColor: location.pathname !== path && "transparent",
         }}
       >
-        {/* <svg className="bi me-2" width="16" height="16">
-      <use xlink:href="#home"></use>
-    </svg> */}
+        <span className="bi me-2" width="16" height="16">
+          <MDBIcon fas icon={icon} />
+        </span>
         {name}
       </Link>
     </li>
