@@ -13,7 +13,7 @@ const DropDown = ({ onChange, defaultValue, name, options }) => {
       name={name}
       onChange={onChange}
     >
-      <option value={null}>{defaultValue}</option>
+      <option value="">{defaultValue}</option>
       {options?.map((option) => (
         <option value={option.id} key={option.id}>
           {option.full_name || option.name}

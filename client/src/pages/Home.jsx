@@ -7,8 +7,13 @@ import { tableColumns } from "../util/tableColumns";
 import Error from "../components/Error";
 import FilterBar from "../components/FilterBar";
 import Pagination from "../components/Pagination";
+import { useLocation } from "react-router-dom";
 const Home = () => {
-  const { data: tasks, loading, error } = useQuery("/tasks");
+  const {
+    data: tasks,
+    loading,
+    error,
+  } = useQuery(`/tasks${useLocation().search}`);
 
   if (loading) return <p>loading...</p>;
   if (error) {

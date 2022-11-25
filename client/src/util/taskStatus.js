@@ -1,5 +1,5 @@
 export const status = [
-  { id: 1, name: "To Do" },
-  { id: 2, name: "In Progress" },
-  { id: 3, name: "Done" },
+  { id: "To Do", name: "To Do" },
+  { id: "In Progress", name: "In Progress" },
+  { id: "Done", name: "Done" },
 ];
