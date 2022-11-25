@@ -38,7 +38,7 @@ const FilterBar = () => {
   useQueryParams(inputs);
 
   return (
-    <MDBNavbar expand="lg" dark bgColor="light" className="mt-n5">
+    <MDBNavbar expand="lg" dark bgColor="light" className="mt-1">
       <MDBContainer fluid>
         <MDBNavbarNav className="me-auto mb-3 mb-lg-0">
           <DropDown
@@ -46,26 +46,30 @@ const FilterBar = () => {
             name="createdBy_id"
             defaultValue="Created By"
             options={users}
+            className="mx-3"
           />
           <DropDown
             onChange={handleChange}
             name="assignTo_id"
             defaultValue="Assign To"
             options={users}
+            className="mx-3"
           />
           <DropDown
             onChange={handleChange}
             name="status"
             defaultValue="By Status"
             options={status}
+            className="mx-3"
           />
           <DropDown
             onChange={handleChange}
             name="category_id"
             defaultValue="By Category"
             options={categories}
+            className="mx-3"
           />
-          <MDBInputGroup className="d-flex w-auto">
+          <MDBInputGroup className="d-flex w-auto mx-3">
             <input
               name="search"
               onChange={(e) => setSearch(e.target.value)}

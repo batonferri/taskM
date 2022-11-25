@@ -30,15 +30,13 @@ const CommentSection = ({ taskId }) => {
     }
   };
 
-  console.log("test");
-
   if (loading) return <p>loading...</p>;
   if (error) {
     return <Error error={error} />;
   }
 
   return (
-    <>
+    <div className="pb-5">
       {comments.length ? (
         <Comments comments={comments} />
       ) : (
@@ -49,7 +47,7 @@ const CommentSection = ({ taskId }) => {
         handleChange={handleChange}
         message={message}
       />
-    </>
+    </div>
   );
 };
 

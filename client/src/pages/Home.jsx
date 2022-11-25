@@ -21,7 +21,8 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div className="mt-3 container">
+      <h2 style={{ color: "#332d2d" }}>Dashboard</h2>
       <FilterBar />
       <MDBTable align="middle">
         <TableHead tableColumns={tableColumns} />
@@ -48,7 +49,7 @@ const Home = () => {
         ))}
       </MDBTable>
       <Pagination />
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDown = ({ onChange, defaultValue, name, options }) => {
+const DropDown = ({ onChange, defaultValue, name, options, className }) => {
   return (
     <select
       style={{
@@ -9,7 +9,7 @@ const DropDown = ({ onChange, defaultValue, name, options }) => {
         borderRadius: "5px",
         width: "280px",
       }}
-      className="browser-default custom-select .dropdown-primary"
+      className={className}
       name={name}
       onChange={onChange}
     >

@@ -1,6 +1,12 @@
 import React from "react";
 
-const Avatar = ({ src, name }) => {
+const Avatar = ({
+  src,
+  name,
+  width = "45px",
+  height = "45px",
+  className = "rounded-circle",
+}) => {
   return (
     <>
       {src ? (
@@ -8,13 +14,13 @@ const Avatar = ({ src, name }) => {
           src={src}
           alt={name}
           style={{ width: "45px", height: "45px", objectFit: "cover" }}
-          className="rounded-circle"
+          className={className}
         />
       ) : (
         <div
           style={{
-            width: "45px",
-            height: "45px",
+            width: width,
+            height: height,
             backgroundColor: "grey",
             color: "white",
           }}
