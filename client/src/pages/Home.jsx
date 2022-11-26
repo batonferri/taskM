@@ -50,7 +50,7 @@ const Home = () => {
             />
           ))}
         </MDBTable>
-        <Pagination />
+        <Pagination totalPages={tasks[0]?.totalNumberOfRows / 8} />
       </MultipleQueryParamsProvider>
     </div>
   );

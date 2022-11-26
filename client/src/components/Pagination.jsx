@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { useMultipleQueryParams } from "../hooks/useMultipleQueryParams";
 import PaginationNumbers from "./PaginationNumbers";
 
-const Pagination = ({ totalPages = 10 }) => {
+const Pagination = ({ totalPages }) => {
   const [page, setPage] = useState(1);
 
   const { setParams } = useMultipleQueryParams();
@@ -35,7 +35,7 @@ const Pagination = ({ totalPages = 10 }) => {
         <MDBPaginationItem>
           <MDBPaginationLink
             type="button"
-            style={{ pointerEvents: page === totalPages && "none" }}
+            style={{ pointerEvents: page >= totalPages && "none" }}
             onClick={() => {
               setParams((prev) => ({ ...prev, page: page + 1 }));
               setPage((prev) => prev + 1);

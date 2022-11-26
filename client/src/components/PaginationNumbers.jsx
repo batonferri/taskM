@@ -8,7 +8,7 @@ const PaginationNumbers = ({ page, setPage, totalPages }) => {
   const { setParams } = useMultipleQueryParams();
 
   return pageNumberShown
-    .filter((pageNr) => pageNr > 0 && pageNr <= totalPages)
+    .filter((pageNr) => pageNr > 0 && pageNr <= Math.ceil(totalPages))
     .map((pageNr) => (
       <MDBPaginationItem>
         <MDBPaginationLink
