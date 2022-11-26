@@ -5,7 +5,7 @@ const Avatar = ({
   name,
   width = "45px",
   height = "45px",
-  className = "rounded-circle",
+  className = "",
 }) => {
   return (
     <>
@@ -13,8 +13,8 @@ const Avatar = ({
         <img
           src={src}
           alt={name}
-          style={{ width: "45px", height: "45px", objectFit: "cover" }}
-          className={className}
+          style={{ width: width, height: height, objectFit: "cover" }}
+          className={`${className} rounded-circle `}
         />
       ) : (
         <div
@@ -24,7 +24,7 @@ const Avatar = ({
             backgroundColor: "grey",
             color: "white",
           }}
-          className="rounded-circle d-flex justify-content-center align-items-center font-weight-bold"
+          className={`${className} rounded-circle d-flex justify-content-center align-items-center font-weight-bold`}
         >
           {name
             .toUpperCase()

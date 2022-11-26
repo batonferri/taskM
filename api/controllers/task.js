@@ -28,7 +28,7 @@ export const getTask = (req, res) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const query =
-      "SELECT t.id, `title`, `description`, `status`, cb.id as createdBy_id, cb.full_name as createdBy, cb.email as createdBy_email, cb.profile_pic as createdBy_profile_pic, ast.id as assignTo_id, ast.profile_pic as assignTo_profile_pic, ast.email as assignTo_email, ast.full_name as assignTo, `created_at`, `started_at`, `finished_at`, c.name as companyName, ct.name as categoryName FROM tasks t JOIN companies c ON c.id = t.company_id JOIN categories ct ON t.category_id = ct.id JOIN users cb ON t.created_by = cb.id JOIN users ast ON t.assign_to = ast.id WHERE t.id = ?";
+      "SELECT t.id, `title`, `description`, `status`, `deadline`, `priority`, cb.id as createdBy_id, cb.full_name as createdBy, cb.email as createdBy_email, cb.profile_pic as createdBy_profile_pic, ast.id as assignTo_id, ast.profile_pic as assignTo_profile_pic, ast.email as assignTo_email, ast.full_name as assignTo, `created_at`, `started_at`, `finished_at`, c.name as companyName, ct.name as categoryName FROM tasks t JOIN companies c ON c.id = t.company_id JOIN categories ct ON t.category_id = ct.id JOIN users cb ON t.created_by = cb.id JOIN users ast ON t.assign_to = ast.id WHERE t.id = ?";
 
     db.query(query, [req.params.id], (err, data) => {
       if (err) return res.status(500).json(err);
@@ -44,7 +44,7 @@ export const startTask = (req, res) => {
   jwt.verify(token, "jwtkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
     const query =
-      "UPDATE tasks SET `status`= 'In Progress' WHERE `id` = ? AND `assign_to` = ?";
+      "UPDATE tasks SET `status`= 'In Progress', `started_at` = now() WHERE `id` = ? AND `assign_to` = ?";
 
     db.query(query, [req.params.id, userInfo.id], (err, data) => {
       if (err) return res.status(500).json(err);

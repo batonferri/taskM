@@ -36,7 +36,7 @@ const CommentSection = ({ taskId }) => {
   }
 
   return (
-    <div className="pb-5">
+    <div className="py-5">
       <Comments comments={comments} />
       <CommentForm
         handleSubmit={handleSubmit}
