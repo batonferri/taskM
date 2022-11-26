@@ -4,7 +4,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Navbar from "./components/Navbar";
 import RedirectLayout from "./components/RedirectLayout";
 import AddTask from "./pages/AddTask";
 import Profile from "./pages/Profile";
@@ -22,15 +21,6 @@ const MainLayout = () => {
     </div>
   );
 };
-
-// const MainLayout = () => {
-//   return (
-//     <div>
-//       <Navbar />
-//       <Outlet />
-//     </div>
-//   );
-// };
 
 const router = createBrowserRouter([
   {
