@@ -6,36 +6,22 @@ import {
   MDBNavbarNav,
 } from "mdb-react-ui-kit";
 import React, { useState } from "react";
-
 import { useQuery } from "../hooks/useFetch";
-import { useQueryParams } from "../hooks/useQueryParams";
+import { useMultipleQueryParams } from "../hooks/useMultipleQueryParams";
 import { status } from "../util/taskStatus";
 import DropDown from "./DropDown";
 
 const FilterBar = () => {
-  const [inputs, setInputs] = useState({});
   const [search, setSearch] = useState("");
   const { data: categories } = useQuery("/categories");
   const { data: users } = useQuery("/users");
 
-  const handleChange = (e) => {
-    if (e.target.value === "") {
-      setInputs((prevState) => {
-        const state = { ...prevState };
-        delete state[e.target.name];
-        return state;
-      });
-      return;
-    }
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const { params, setParams, handleChange } = useMultipleQueryParams();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setInputs((prev) => ({ ...prev, search: `%${search}%` }));
+    setParams((prev) => ({ ...prev, search: `%${search}%` }));
   };
-
-  useQueryParams(inputs);
 
   return (
     <MDBNavbar expand="lg" dark bgColor="light" className="mt-1">

@@ -3,26 +3,46 @@ import {
   MDBPaginationItem,
   MDBPaginationLink,
 } from "mdb-react-ui-kit";
-import React from "react";
+import React, { useState } from "react";
+import { useMultipleQueryParams } from "../hooks/useMultipleQueryParams";
+import PaginationNumbers from "./PaginationNumbers";
 
-const Pagination = () => {
+const Pagination = ({ totalPages = 10 }) => {
+  const [page, setPage] = useState(1);
+
+  const { setParams } = useMultipleQueryParams();
+
   return (
     <nav aria-label="Page navigation example">
       <MDBPagination className="mb-0 justify-content-end">
         <MDBPaginationItem>
-          <MDBPaginationLink href="#">Previous</MDBPaginationLink>
+          <MDBPaginationLink
+            type="button"
+            style={{ pointerEvents: page === 1 && "none" }}
+            onClick={() => {
+              setParams((prev) => ({ ...prev, page: page - 1 }));
+              setPage((prev) => prev - 1);
+            }}
+          >
+            Previous
+          </MDBPaginationLink>
         </MDBPaginationItem>
+        <PaginationNumbers
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
         <MDBPaginationItem>
-          <MDBPaginationLink href="#">1</MDBPaginationLink>
-        </MDBPaginationItem>
-        <MDBPaginationItem>
-          <MDBPaginationLink href="#">2</MDBPaginationLink>
-        </MDBPaginationItem>
-        <MDBPaginationItem>
-          <MDBPaginationLink href="#">3</MDBPaginationLink>
-        </MDBPaginationItem>
-        <MDBPaginationItem>
-          <MDBPaginationLink href="#">Next</MDBPaginationLink>
+          <MDBPaginationLink
+            type="button"
+            style={{ pointerEvents: page === totalPages && "none" }}
+            onClick={() => {
+              setParams((prev) => ({ ...prev, page: page + 1 }));
+              setPage((prev) => prev + 1);
+            }}
+          >
+            Next
+          </MDBPaginationLink>
         </MDBPaginationItem>
       </MDBPagination>
     </nav>
