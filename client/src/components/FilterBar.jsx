@@ -62,9 +62,13 @@ const FilterBar = () => {
               className="form-control"
               placeholder="Search by title"
               aria-label="Search"
-              type="Search"
+              style={{
+                border: "1px solid rgb(205, 205, 205)",
+                outline: "none",
+                boxShadow: "none",
+              }}
             />
-            <MDBBtn onClick={handleSearch} outline>
+            <MDBBtn onClick={handleSearch} color="#332d2d" outline>
               Search
             </MDBBtn>
           </MDBInputGroup>
