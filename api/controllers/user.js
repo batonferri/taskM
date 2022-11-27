@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { db } from "../db.js";
+import { getUserLogicFun } from "../helper/logicFunctions.js";
 
 export const getUsers = (req, res) => {
   const token = req.cookies.access_token;
@@ -24,10 +25,10 @@ export const getUser = (req, res) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const query =
-      "SELECT *, NULL AS password FROM users WHERE company_id=? AND id=?";
-    db.query(query, [userInfo.companyId, req.params.id], (err, data) => {
+      "select COUNT(t.id) OVER () AS totalTasks, (select COUNT(*) from tasks where assign_to = u.id and status = 'In Progress') as tasksInProgress, (select COUNT(*) from tasks where assign_to = u.id and status = 'To Do') as tasksToDo, (select COUNT(*) from tasks where assign_to = u.id and status = 'Done') as tasksDone, u.id as userId, u.full_name, u.email, u.profile_pic, u.is_admin, t.id as taskId, t.title, t.status, t.created_at, c.name as category from users u LEFT JOIN tasks t on u.id = t.assign_to JOIN categories c on t.category_id = c.id WHERE u.id = ? order by t.id desc limit 3";
+    db.query(query, [req.params.id], (err, data) => {
       if (err) return res.status(500).json(err);
-      return res.json(data[0]);
+      return res.json(getUserLogicFun(data));
     });
   });
 };

@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div className="mt-3 container">
-      <h2 style={{ color: "#332d2d" }}>Dashboard</h2>
+      <h2 className="text-dark">Dashboard</h2>
       <MultipleQueryParamsProvider>
         <FilterBar />
         <MDBTable align="middle">

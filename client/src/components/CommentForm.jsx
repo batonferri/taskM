@@ -19,10 +19,9 @@ const CommentForm = ({ handleChange, handleSubmit, message }) => {
           </div>
           <div className="col-12">
             <input
-              style={{ backgroundColor: "#332d2d" }}
               onClick={handleSubmit}
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary bg-dark"
               value="Post comment"
             />
           </div>

@@ -69,7 +69,7 @@ const FilterBar = () => {
                 boxShadow: "none",
               }}
             />
-            <MDBBtn onClick={handleSearch} color="#332d2d" outline>
+            <MDBBtn onClick={handleSearch} color="dark" outline>
               Search
             </MDBBtn>
           </MDBInputGroup>

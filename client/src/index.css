@@ -10,3 +10,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.link:focus,
+.darkHoverEffect:hover {
+  background-color: #616161 !important;
+}
+
+.lightHoverEffectRow:hover {
+  background-color: #e4e4e4 !important;
+}

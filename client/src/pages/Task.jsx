@@ -28,10 +28,12 @@ const Task = () => {
           <TaskWidgetBody
             status={task.status}
             createdBy={{
+              id: task.createdBy_id,
               name: task.createdBy,
               profilePic: task.createdBy_profile_pic,
             }}
             assignTo={{
+              id: task.assignTo_id,
               name: task.assignTo,
               profilePic: task.assignTo_profile_pic,
             }}

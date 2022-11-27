@@ -4,6 +4,7 @@ import { getStatusColor } from "../helper/getStatusColor";
 import Avatar from "./Avatar";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 const TaskWidgetBody = ({
   status,
   createdBy,
@@ -17,7 +18,7 @@ const TaskWidgetBody = ({
   dayjs.extend(relativeTime);
 
   return (
-    <div className="aside-block my-2" style={{ pointerEvents: "none" }}>
+    <div className="aside-block my-2">
       <MDBCard>
         <MDBCardBody>
           <MDBCardText>
@@ -36,36 +37,48 @@ const TaskWidgetBody = ({
           <MDBCardText>
             <div className="d-flex align-items-center">
               Created By:
-              <Avatar
-                name={createdBy.name}
-                src={createdBy.profilePic}
-                width="30px"
-                height="30px"
-                className="ms-2"
-              />
-              <p className="fw-bold mb-1 ms-2">{createdBy.name}</p>
+              <Link
+                to={`/profile/${createdBy.id}`}
+                className="d-flex align-items-center text-dark"
+              >
+                <Avatar
+                  name={createdBy.name}
+                  src={createdBy.profilePic}
+                  width="30px"
+                  height="30px"
+                  className="ms-2"
+                />
+                <p className="fw-bold mb-1 ms-2">{createdBy.name}</p>
+              </Link>
             </div>
           </MDBCardText>
           <MDBCardText>
             <div className="d-flex align-items-center">
               Assign To:
-              <Avatar
-                name={assignTo.name}
-                src={assignTo.profilePic}
-                width="30px"
-                height="30px"
-                className="ms-2"
-              />
-              <p className="fw-bold mb-1 ms-2">{assignTo.name}</p>
+              <Link
+                to={`/profile/${assignTo.id}`}
+                className="d-flex align-items-center text-dark"
+              >
+                <Avatar
+                  name={assignTo.name}
+                  src={assignTo.profilePic}
+                  width="30px"
+                  height="30px"
+                  className="ms-2"
+                />
+                <p className="fw-bold mb-1 ms-2">{assignTo.name}</p>
+              </Link>
             </div>
           </MDBCardText>
           {finishedAt && (
             <MDBCardText>
-              Finished: {dayjs(finishedAt).fromNow(true)}
+              Finished: {dayjs(finishedAt).fromNow(true)} ago
             </MDBCardText>
           )}
           {startedAt && !finishedAt && (
-            <MDBCardText>Started: {dayjs(startedAt).fromNow(true)}</MDBCardText>
+            <MDBCardText>
+              Started: {dayjs(startedAt).fromNow(true)} ago
+            </MDBCardText>
           )}
           <MDBCardText>
             Priority:

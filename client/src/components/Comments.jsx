@@ -21,7 +21,7 @@ const Comments = ({ comments }) => {
             <div className="comment-meta d-flex align-items-baseline">
               <h6 className="me-2">{comment.full_name}</h6>
               <span className="text-muted">
-                {dayjs(comment.created_at).fromNow(true)}
+                {dayjs(comment.created_at).fromNow(true)} ago
               </span>
             </div>
             <div className="comment-body">{comment.message}</div>

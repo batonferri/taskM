@@ -89,10 +89,9 @@ const FormInputs = ({ name, email, profilePic, setRefetch }) => {
           <div className="d-flex flex-row-reverse">
             <div className="col-sm-9 text-secondary d-flex flex-row-reverse">
               <input
-                style={{ backgroundColor: "#332d2d" }}
                 type="button"
                 onClick={handleSubmit}
-                className="btn btn-primary px-4"
+                className="btn btn-primary px-4 bg-dark"
                 defaultValue="Save Changes"
               />
             </div>

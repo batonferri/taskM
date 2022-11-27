@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Task from "./pages/Task";
 import SideBar from "./components/SideBar";
 import CompanyPanel from "./pages/CompanyPanel";
+import RedirectToProfile from "./components/RedirectToProfile";
 
 const MainLayout = () => {
   return (
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
           {
             path: "/profile/:id",
             element: <Profile />,
+          },
+          {
+            path: "/profile",
+            element: <RedirectToProfile />,
           },
           {
             path: "/addtask",

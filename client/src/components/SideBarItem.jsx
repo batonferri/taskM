@@ -7,7 +7,9 @@ const SideBarItem = ({ name, path, icon }) => {
     <li className="nav-item" key={name + path}>
       <Link
         to={path}
-        className={`nav-link ${location.pathname !== path && "text-white"}`}
+        className={` nav-link ${
+          location.pathname !== path && "text-white darkHoverEffect"
+        }`}
         style={{
           color: "#332d2d",
           backgroundColor: location.pathname !== path && "transparent",

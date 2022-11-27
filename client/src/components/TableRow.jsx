@@ -21,6 +21,7 @@ const TableRow = ({
     <MDBTableBody
       style={{ cursor: "pointer" }}
       onClick={() => navigate(`/task/${id}`)}
+      className="lightHoverEffectRow"
     >
       <tr>
         <td>

@@ -12,7 +12,7 @@ const SideBarDropDown = ({ name, pic, onClick, id }) => {
   return (
     <MDBDropdown group className="shadow-0">
       <MDBDropdownToggle
-        color="#332d2d"
+        color="dark"
         role="button"
         className="d-flex align-items-center text-white"
       >
@@ -27,14 +27,14 @@ const SideBarDropDown = ({ name, pic, onClick, id }) => {
       </MDBDropdownToggle>
       <MDBDropdownMenu className="dropdown-menu-dark w-100">
         <MDBDropdownItem>
-          <Link to={`/profile/${id}`} className="dropdown-item">
+          <Link to={`/profile/${id}`} className="link dropdown-item">
             Profile
           </Link>
         </MDBDropdownItem>
         <MDBDropdownItem>
-          <a className="dropdown-item" onClick={onClick}>
+          <Link className="link dropdown-item" onClick={onClick}>
             Sign out
-          </a>
+          </Link>
         </MDBDropdownItem>
       </MDBDropdownMenu>
     </MDBDropdown>

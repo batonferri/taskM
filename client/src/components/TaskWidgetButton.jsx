@@ -28,21 +28,13 @@ const TaskWidgetButton = ({ assignTo, createdBy, status, id, setRefetch }) => {
 
   if (createdBy === me.id && status === "In Progress")
     return (
-      <MDBBtn
-        className="w-100"
-        style={{ backgroundColor: "#332d2d" }}
-        onClick={handleClose}
-      >
+      <MDBBtn className="w-100" color="dark" onClick={handleClose}>
         Close
       </MDBBtn>
     );
   if (assignTo === me.id && status === "To Do")
     return (
-      <MDBBtn
-        className="w-100"
-        style={{ backgroundColor: "#332d2d" }}
-        onClick={handleStart}
-      >
+      <MDBBtn className="w-100" color="dark" onClick={handleStart}>
         start
       </MDBBtn>
     );
