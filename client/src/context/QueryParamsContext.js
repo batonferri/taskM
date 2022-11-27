@@ -37,9 +37,7 @@ export const MultipleQueryParamsProvider = ({ children }) => {
   useQueryParams(params);
 
   return (
-    <QueryParamsContext.Provider
-      value={{ params, handleChange, setParams, page, setPage }}
-    >
+    <QueryParamsContext.Provider value={{ handleChange, page, setPage }}>
       {children}
     </QueryParamsContext.Provider>
   );

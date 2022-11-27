@@ -8,7 +8,7 @@ import { useMultipleQueryParams } from "../hooks/useMultipleQueryParams";
 import PaginationNumbers from "./PaginationNumbers";
 
 const Pagination = ({ totalPages }) => {
-  const { setParams, page, setPage } = useMultipleQueryParams();
+  const { handleChange, page, setPage } = useMultipleQueryParams();
 
   return (
     <nav aria-label="Page navigation example">
@@ -18,7 +18,7 @@ const Pagination = ({ totalPages }) => {
             type="button"
             style={{ pointerEvents: page === 1 && "none" }}
             onClick={() => {
-              setParams((prev) => ({ ...prev, page: page - 1 }));
+              handleChange({ target: { name: "page", value: page - 1 } });
               setPage((prev) => prev - 1);
             }}
           >
@@ -29,13 +29,14 @@ const Pagination = ({ totalPages }) => {
           page={page}
           setPage={setPage}
           totalPages={totalPages}
+          handleChange={handleChange}
         />
         <MDBPaginationItem>
           <MDBPaginationLink
             type="button"
             style={{ pointerEvents: page >= totalPages && "none" }}
             onClick={() => {
-              setParams((prev) => ({ ...prev, page: page + 1 }));
+              handleChange({ target: { name: "page", value: page + 1 } });
               setPage((prev) => prev + 1);
             }}
           >
