@@ -7,7 +7,6 @@ import SideBarDropDown from "./SideBarDropDown";
 import SideBarItem from "./SideBarItem";
 
 const SideBar = () => {
-  const [showDropDown, setShowDropDown] = useState(false);
   const navigate = useNavigate();
   const { me, logout } = useUser();
 
@@ -32,11 +31,10 @@ const SideBar = () => {
       </ul>
       <hr />
       <SideBarDropDown
+        id={me?.id}
         name={me?.full_name}
         pic={me?.profile_pic}
         onClick={handleLogout}
-        setShowDropDown={setShowDropDown}
-        showDropDown={showDropDown}
       />
     </div>
   );

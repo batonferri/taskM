@@ -8,13 +8,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 
-const SideBarDropDown = ({
-  name,
-  pic,
-  setShowDropDown,
-  showDropDown,
-  onClick,
-}) => {
+const SideBarDropDown = ({ name, pic, onClick, id }) => {
   return (
     <MDBDropdown group className="shadow-0">
       <MDBDropdownToggle
@@ -33,7 +27,7 @@ const SideBarDropDown = ({
       </MDBDropdownToggle>
       <MDBDropdownMenu className="dropdown-menu-dark w-100">
         <MDBDropdownItem>
-          <Link to={"/profile"} className="dropdown-item">
+          <Link to={`/profile/${id}`} className="dropdown-item">
             Profile
           </Link>
         </MDBDropdownItem>
