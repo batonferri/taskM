@@ -3,14 +3,12 @@ import {
   MDBPaginationItem,
   MDBPaginationLink,
 } from "mdb-react-ui-kit";
-import React, { useState } from "react";
+import React from "react";
 import { useMultipleQueryParams } from "../hooks/useMultipleQueryParams";
 import PaginationNumbers from "./PaginationNumbers";
 
 const Pagination = ({ totalPages }) => {
-  const [page, setPage] = useState(1);
-
-  const { setParams } = useMultipleQueryParams();
+  const { setParams, page, setPage } = useMultipleQueryParams();
 
   return (
     <nav aria-label="Page navigation example">

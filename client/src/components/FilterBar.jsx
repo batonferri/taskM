@@ -16,11 +16,12 @@ const FilterBar = () => {
   const { data: categories } = useQuery("/categories");
   const { data: users } = useQuery("/users");
 
-  const { params, setParams, handleChange } = useMultipleQueryParams();
+  const { handleChange } = useMultipleQueryParams();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setParams((prev) => ({ ...prev, search: `%${search}%` }));
+    if (search.length < 1) return;
+    handleChange({ target: { name: "search", value: `%${search}%` } });
   };
 
   return (

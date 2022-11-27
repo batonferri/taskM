@@ -5,29 +5,41 @@ export const QueryParamsContext = createContext();
 
 export const MultipleQueryParamsProvider = ({ children }) => {
   const [params, setParams] = useState({});
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (location.search.length !== 0) return;
 
     setParams({});
+    setPage(1);
   }, [location.search]);
 
-  const handleChange = (e) => {
-    if (e.target.value === "") {
+  const handleChange = ({ target: { name, value } }) => {
+    if (value === "") {
+      setPage(1);
       setParams((prevState) => {
-        const state = { ...prevState };
-        delete state[e.target.name];
-        return state;
+        const { page, [name]: undefined, ...other } = prevState;
+        return other;
       });
       return;
     }
-    setParams((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (name !== "page") {
+      setPage(1);
+      setParams((prevState) => {
+        const { page, ...other } = prevState;
+        return other;
+      });
+    }
+
+    setParams((prev) => ({ ...prev, [name]: value }));
   };
 
   useQueryParams(params);
 
   return (
-    <QueryParamsContext.Provider value={{ params, handleChange, setParams }}>
+    <QueryParamsContext.Provider
+      value={{ params, handleChange, setParams, page, setPage }}
+    >
       {children}
     </QueryParamsContext.Provider>
   );

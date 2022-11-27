@@ -33,8 +33,8 @@ const TableRow = ({
           </div>
         </td>
         <td>
-          <p className="fw-normal mb-1">{title}</p>
-          <p className="text-muted mb-0">{truncateString(description, 15)}</p>
+          <p className="fw-normal mb-1">{truncateString(title, 45)}</p>
+          <p className="text-muted mb-0">{truncateString(description, 40)}</p>
         </td>
         <td>
           <div className="d-flex align-items-center">
