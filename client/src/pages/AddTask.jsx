@@ -98,7 +98,7 @@ const AddTask = () => {
           </MDBRow>
           <MDBRow className="mb-3">
             <MDBBtn color="dark" onClick={handleSubmit}>
-              Create Task
+              Add Task
             </MDBBtn>
           </MDBRow>
           {error && (

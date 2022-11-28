@@ -42,7 +42,6 @@ const Register = () => {
       await axios.post(endPoint, inputs);
       navigate("/login");
     } catch (err) {
-      console.log(err);
       setError(err.response.data);
     }
   };

@@ -6,7 +6,6 @@ import { getStatusColor } from "../helper/getStatusColor";
 import { truncateString } from "../helper/truncateString";
 
 const RecentTasks = ({ tasks }) => {
-  console.log(tasks);
   const navigate = useNavigate();
 
   return (

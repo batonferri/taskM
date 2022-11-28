@@ -6,13 +6,52 @@ import UserInfo from "../components/UserInfo";
 import { useUser } from "../hooks/useUser";
 import { useQuery } from "../hooks/useFetch";
 import RecentTasks from "../components/RecentTasks";
+import { upload } from "../helper/uploadFile";
+import axios from "axios";
 
 const Profile = () => {
   const { id } = useParams();
-  const { me } = useUser();
+  const { me, setMe } = useUser();
+
+  const [inputs, setInputs] = useState({
+    name: me?.full_name,
+    email: me?.email,
+    profilePic: me?.profile_pic,
+  });
 
   const [refetch, setRefetch] = useState(false);
   const { data: user, loading, error } = useQuery(`/users/${id}`, refetch);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    if (!!e.target?.files)
+      return setInputs((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.files[0],
+      }));
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (typeof inputs.profilePic !== "string") {
+      const imgUrl = await upload(inputs.profilePic);
+      try {
+        await axios.put("/users", { ...inputs, profilePic: imgUrl });
+        setRefetch((prev) => !prev);
+        setMe((prev) => ({ ...prev, profile_pic: imgUrl }));
+      } catch (err) {
+        console.error(err);
+      }
+      return;
+    }
+    try {
+      await axios.put("/users", inputs);
+      setRefetch((prev) => !prev);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (loading) return <p>loading...</p>;
   if (error) {
@@ -33,10 +72,9 @@ const Profile = () => {
             />
             {me?.id === Number(id) && (
               <FormInputs
-                email={me?.email}
-                name={me?.full_name}
-                profilePic={me?.profile_pic}
-                setRefetch={setRefetch}
+                inputs={inputs}
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
               />
             )}
           </div>

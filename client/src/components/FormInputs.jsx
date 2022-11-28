@@ -1,53 +1,15 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { upload } from "../helper/uploadFile";
-import { useUser } from "../hooks/useUser";
+import React from "react";
 
-const FormInputs = ({ name, email, profilePic, setRefetch }) => {
-  const [inputs, setInputs] = useState({
-    name: name,
-    email: email,
-    profilePic: profilePic,
-  });
-  const { setMe } = useUser();
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    if (!!e.target?.files)
-      return setInputs((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.files[0],
-      }));
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (typeof inputs.profilePic !== "string") {
-      const imgUrl = await upload(inputs.profilePic);
-      try {
-        await axios.put("/users", { ...inputs, profilePic: imgUrl });
-        setRefetch((prev) => !prev);
-        setMe((prev) => ({ ...prev, profile_pic: imgUrl }));
-      } catch (err) {
-        console.error(err);
-      }
-      return;
-    }
-    try {
-      await axios.put("/users", inputs);
-      setRefetch((prev) => !prev);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+const FormInputs = ({ handleChange, handleSubmit, inputs, company }) => {
   return (
     <div className="col-md-8">
       <div className="card  h-100">
         <div className="card-body">
           <div className="row mb-3">
             <div className="col-sm-3">
-              <h6 className="mb-0">Full Name</h6>
+              <h6 className="mb-0">
+                {!company ? "Full Name" : "Company Name"}
+              </h6>
             </div>
             <div className="col-sm-9 text-secondary">
               <input
@@ -59,23 +21,27 @@ const FormInputs = ({ name, email, profilePic, setRefetch }) => {
               />
             </div>
           </div>
+          {!company && (
+            <div className="row mb-3">
+              <div className="col-sm-3">
+                <h6 className="mb-0">Email</h6>
+              </div>
+              <div className="col-sm-9 text-secondary">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  onChange={handleChange}
+                  defaultValue={inputs.email}
+                />
+              </div>
+            </div>
+          )}
           <div className="row mb-3">
             <div className="col-sm-3">
-              <h6 className="mb-0">Email</h6>
-            </div>
-            <div className="col-sm-9 text-secondary">
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                onChange={handleChange}
-                defaultValue={inputs.email}
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-3">
-              <h6 className="mb-0">Profile Picture</h6>
+              <h6 className="mb-0">
+                {!company ? "Profile Picture" : "Company Logo"}
+              </h6>
             </div>
             <div className="col-sm-9 text-secondary">
               <input
