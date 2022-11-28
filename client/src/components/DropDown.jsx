@@ -1,13 +1,20 @@
 import React from "react";
 
-const DropDown = ({ onChange, defaultValue, name, options, className }) => {
+const DropDown = ({
+  onChange,
+  defaultValue,
+  name,
+  options,
+  className,
+  width = "280px",
+}) => {
   return (
     <select
       style={{
         border: "1px solid #cdcdcd",
         outline: "none",
         borderRadius: "5px",
-        width: "280px",
+        width: width,
       }}
       className={className}
       name={name}

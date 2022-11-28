@@ -19,3 +19,9 @@ code {
 .lightHoverEffectRow:hover {
   background-color: #e4e4e4 !important;
 }
+
+.removeInputOutline {
+  border: 1px solid rgb(205, 205, 205) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

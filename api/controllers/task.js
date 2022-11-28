@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { db } from "../db.js";
 import { queryParams } from "../helper/queryParams.js";
+import dayjs from "dayjs";
 
 export const getTasks = (req, res) => {
   const token = req.cookies.access_token;
@@ -75,21 +76,40 @@ export const closeTask = (req, res) => {
 
 export const addTask = (req, res) => {
   const token = req.cookies.access_token;
+
+  if (req.body.title.length < 1)
+    return res.status(400).json("Title is required");
+  if (req.body.description.length < 1)
+    return res.status(400).json("Description is required");
+  if (req.body.assign_to === 0)
+    return res.status(400).json("Assign To is required");
+  if (req.body.category_id === 0)
+    return res.status(400).json("Category is required");
+  if (req.body.priority.length < 1)
+    return res.status(400).json("Priority is required");
+  if (req.body.deadline.length < 1)
+    return res.status(400).json("Deadline is required");
+
+  if (dayjs(req.body.deadline).diff(dayjs(), "day", true) < 1)
+    return res.status(400).json("Deadline should be at least 24h");
+
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, "jwtkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const query =
-      "INSERT INTO tasks(`title`, `description`, `status`, `created_by`, `assign_to`, `category_id`, `company_id`) VALUES (?)";
+      "INSERT INTO tasks(`title`, `description`, `status`, `created_by`, `assign_to`, `priority`, `deadline`, `category_id`, `company_id`) VALUES (?)";
 
     const values = [
       req.body.title,
       req.body.description,
       "To Do",
       userInfo.id,
-      Number(req.body.assign_to),
-      Number(req.body.category_id),
+      req.body.assign_to,
+      req.body.priority,
+      req.body.deadline,
+      req.body.category_id,
       userInfo.companyId,
     ];
 

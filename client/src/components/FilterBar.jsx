@@ -60,14 +60,9 @@ const FilterBar = () => {
             <input
               name="search"
               onChange={(e) => setSearch(e.target.value)}
-              className="form-control"
+              className="removeInputOutline form-control"
               placeholder="Search by title"
               aria-label="Search"
-              style={{
-                border: "1px solid rgb(205, 205, 205)",
-                outline: "none",
-                boxShadow: "none",
-              }}
             />
             <MDBBtn onClick={handleSearch} color="dark" outline>
               Search

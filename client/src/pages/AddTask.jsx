@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "../hooks/useFetch";
 import DropDown from "../components/DropDown";
+import { priority } from "../util/taskStatus";
 
 const AddTask = () => {
   const [error, setError] = useState(null);
@@ -12,6 +13,8 @@ const AddTask = () => {
     description: "",
     assign_to: 0,
     category_id: 0,
+    priority: "",
+    deadline: "",
   });
 
   const navigate = useNavigate();
@@ -34,48 +37,77 @@ const AddTask = () => {
   const { data: categories } = useQuery("/categories");
 
   return (
-    <div className="mt-5 px-5">
-      <MDBRow className="mb-4">
-        <MDBCol>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            aria-label="Large"
-            placeholder="Title"
-            aria-describedby="inputGroup-sizing-sm"
-            onChange={handleChange}
-          />
-        </MDBCol>
-        <MDBCol className="d-flex justify-content-evenly">
-          <DropDown
-            onChange={handleChange}
-            name="assign_to"
-            defaultValue="Assign To"
-            options={users}
-          />
-          <DropDown
-            onChange={handleChange}
-            name="category_id"
-            defaultValue="Categories"
-            options={categories}
-          />
-        </MDBCol>
-      </MDBRow>
-      <div className="form-group shadow-textarea">
-        <textarea
-          onChange={handleChange}
-          className="form-control z-depth-1 mb-4"
-          id="exampleFormControlTextarea6"
-          rows="3"
-          placeholder="Description"
-          name="description"
-        ></textarea>
+    <div>
+      <h2 className="text-dark mt-3 mx-1 px-5">Add a new task</h2>
+      <div className="container-fluid d-flex justify-content-around my-3 ">
+        <div className="col-7 px-3">
+          <MDBRow className="mb-4">
+            <input
+              type="text"
+              name="title"
+              className="removeInputOutline form-control"
+              placeholder="Title"
+              onChange={handleChange}
+            />
+          </MDBRow>
+          <MDBRow className="mb-4">
+            <textarea
+              onChange={handleChange}
+              className="removeInputOutline form-control z-depth-1"
+              rows="20"
+              placeholder="Description"
+              name="description"
+            ></textarea>
+          </MDBRow>
+        </div>
+        <div className="col-4 px-3">
+          <MDBRow className="mb-5" style={{ height: "35px" }}>
+            <DropDown
+              onChange={handleChange}
+              name="assign_to"
+              defaultValue="Assign To"
+              options={users}
+              width="100%"
+            />
+          </MDBRow>
+          <MDBRow className="mb-5" style={{ height: "35px" }}>
+            <DropDown
+              width="100%"
+              onChange={handleChange}
+              name="category_id"
+              defaultValue="Categories"
+              options={categories}
+            />
+          </MDBRow>
+          <MDBRow className="mb-5" style={{ height: "35px" }}>
+            <DropDown
+              width="100%"
+              onChange={handleChange}
+              name="priority"
+              defaultValue="Priority"
+              options={priority}
+            />
+          </MDBRow>
+          <MDBRow className="mb-5" style={{ height: "35px" }}>
+            <input
+              type="date"
+              name="deadline"
+              className="removeInputOutline rounded"
+              onChange={handleChange}
+            />
+          </MDBRow>
+          <MDBRow className="mb-3">
+            <MDBBtn color="dark" onClick={handleSubmit}>
+              Create Task
+            </MDBBtn>
+          </MDBRow>
+          {error && (
+            <h5 className="text-danger text-center font-weight-bold">
+              {error}
+            </h5>
+          )}
+        </div>
       </div>
-      <div className="text-center">{error && <p>{error}</p>}</div>
-      <MDBBtn className="mb-4" block onClick={handleSubmit}>
-        Create Task
-      </MDBBtn>
     </div>
   );
 };

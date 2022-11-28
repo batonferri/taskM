@@ -8,7 +8,7 @@ const CommentForm = ({ handleChange, handleSubmit, message }) => {
         <div className="row">
           <div className="col-12 mb-3">
             <textarea
-              className="form-control"
+              className="removeInputOutline form-control"
               name="message"
               value={message}
               placeholder="Write a comment..."
