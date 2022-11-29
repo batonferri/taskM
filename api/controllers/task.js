@@ -21,6 +21,22 @@ export const getTasks = (req, res) => {
   });
 };
 
+export const getTaskCount = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not authenticated!");
+
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+    if (err) return res.status(403).json("Token is not valid!");
+
+    const query = "call company_task_chart(?)";
+
+    db.query(query, [[userInfo.companyId]], (err, data) => {
+      if (err) return res.status(500).json(err);
+      return res.json(data[0][0]);
+    });
+  });
+};
+
 export const getTask = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");

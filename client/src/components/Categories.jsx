@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { MDBBadge } from "mdb-react-ui-kit";
 import { useQuery } from "../hooks/useFetch";
-import Error from "./Error";
 import axios from "axios";
 
 const Categories = () => {
@@ -28,19 +27,14 @@ const Categories = () => {
     }
   };
 
-  const { data: categories, loading, error } = useQuery("/categories", refetch);
-
-  if (loading) return <p>loading...</p>;
-  if (error) {
-    return <Error error={error} />;
-  }
+  const { data: categories } = useQuery("/categories", refetch);
 
   return (
     <div className="col-md-4">
       <div className="card  h-100">
         <div className="card-body">
           <h6 className="d-flex align-items-center mb-3">Categories:</h6>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <MDBBadge color="dark ms-2 mb-2" pill key={category.id}>
               {category.name}
               <i

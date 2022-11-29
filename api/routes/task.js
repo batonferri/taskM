@@ -5,11 +5,13 @@ import {
   startTask,
   getTask,
   closeTask,
+  getTaskCount,
 } from "../controllers/task.js";
 
 const router = express.Router();
 
 router.get("/", getTasks);
+router.get("/count", getTaskCount);
 router.get("/:id", getTask);
 router.post("/", addTask);
 router.put("/start/:id", startTask);

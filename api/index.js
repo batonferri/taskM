@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.js";
 import categoryRoutes from "./routes/category.js";
 import commentsRoutes from "./routes/comment.js";
 import authRoutes from "./routes/auth.js";
+import compRoutes from "./routes/company.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 const app = express();
@@ -32,6 +33,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/comments", commentsRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/company", compRoutes);
 
 app.listen(5000, () => {
   console.log("http://localhost:5000");

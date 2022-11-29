@@ -22,7 +22,7 @@ const SideBar = () => {
         width: "280px",
       }}
     >
-      <SideBarBranding companyName={me?.companyName} />
+      <SideBarBranding companyName={me?.companyName} logo={me?.logo} />
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         {getSidebarItems(me?.is_admin).map((item) => (

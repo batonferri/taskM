@@ -21,6 +21,8 @@ const Home = () => {
     return <Error error={error} />;
   }
 
+  if (!tasks.length) return <p>No tasks</p>;
+
   return (
     <div className="mt-3 container">
       <h2 className="text-dark">Dashboard</h2>
